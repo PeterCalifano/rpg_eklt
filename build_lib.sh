@@ -12,7 +12,15 @@ sudo apt install -y \
     python3-empy \
     liblapack-dev \
     libblas-dev \
-    gfortran
+    gfortran \
+    ros-noetic-image-geometry
+
+# Install missing dependencies by Inivation (libcaer, required by rpg_dvs_ros, in turn required by dvxplorer_ros_driver)
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo add-apt-repository ppa:inivation-ppa/inivation # For Ubuntu 20.04
+#sudo add-apt-repository ppa:inivation-ppa/inivation-bionic # For Ubuntu 18.04
+sudo apt-get update
+sudo apt-get install libcaer-dev
 
 # Remove previous catkin workspace if exists
 if [ -d $BUILD_DIR/eklt_catkin_ws ]; then
