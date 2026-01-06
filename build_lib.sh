@@ -20,6 +20,9 @@ sudo apt install -y ros-$ROS_DISTRO-image-view \
                     ros-$ROS_DISTRO-camera-info-manager \
                     ros-$ROS_DISTRO-image-geometry \
 
+# For easy web visualization
+sudo apt install -y ros-$ROS_DISTRO-web-video-server
+
 # Install missing dependencies by Inivation (libcaer, required by rpg_dvs_ros, in turn required by dvxplorer_ros_driver)
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo add-apt-repository ppa:inivation-ppa/inivation # For Ubuntu 20.04
