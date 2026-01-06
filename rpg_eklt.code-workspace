@@ -4,7 +4,17 @@
 			"path": "."
 		},
 		{
-			"path": "/home/peterc/devDir/dev-tools/cpp_cuda_template_project"
+			"path": "../../home/vscode/eklt_catkin_ws"
 		}
-	]
+	],
+	"settings": {
+		"ros.distro": "noetic",
+		"ROS2.distro": "noetic",
+		"python.autoComplete.extraPaths": [
+			"/opt/ros/noetic/lib/python3/dist-packages"
+		],
+		"python.analysis.extraPaths": [
+			"/opt/ros/noetic/lib/python3/dist-packages"
+		]
+	}
 }
