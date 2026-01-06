@@ -119,7 +119,9 @@ void Viewer::drawOnImage(FeatureTrackData& data, cv::Mat& view, cv::Mat& image)
 
     // draw timestamp
     std::string time_string = "t = " + std::to_string(data.t.toSec() - data.t_init.toSec());
-    cv::putText(view, time_string, scale * (cv::Point(image.size[1], image.size[0]) - cv::Point(140,2)), cv::FONT_HERSHEY_COMPLEX_SMALL, scale*.7, cvScalar(0,255,255), 1, CV_AA);
+    cv::putText(view, time_string, scale * (cv::Point(image.size[1], image.size[0]) - cv::Point(140,2)), cv::FONT_HERSHEY_COMPLEX_SMALL, scale*.7, cvScalar(0,255,255), 1, CV::LINE_AA);
+
+    // DEVNOTE: CV_AA is deprecated in OpenCV 4.x. Replaced with CV::LINE_AA. See https://github.com/uzh-rpg/rpg_eklt/pull/9
 
     // draw patches
     for (int i=0; i<data.patches.size(); i++)
