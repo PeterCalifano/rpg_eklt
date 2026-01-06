@@ -2,6 +2,7 @@ set -eou pipefail
 
 REPO_DIR=$(pwd)
 BUILD_DIR=$HOME
+ROS_DISTRO=${ROS_DISTRO:-noetic}
 
 # Environment and system dependencies (for simplicity)
 sudo apt update
@@ -13,7 +14,11 @@ sudo apt install -y \
     liblapack-dev \
     libblas-dev \
     gfortran \
-    ros-noetic-image-geometry
+
+# Install missing dependencies (ROS)
+sudo apt install -y ros-$ROS_DISTRO-image-view \
+                    ros-$ROS_DISTRO-camera-info-manager \
+                    ros-$ROS_DISTRO-image-geometry \
 
 # Install missing dependencies by Inivation (libcaer, required by rpg_dvs_ros, in turn required by dvxplorer_ros_driver)
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
@@ -42,7 +47,7 @@ export EKLT_CATKIN_WS=$(pwd)
 echo "Workspace path set to $EKLT_CATKIN_WS"
 
 # Notes: build using system python3
-catkin config --init --mkdirs --extend /opt/ros/noetic --cmake-args -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3
+catkin config --init --mkdirs --extend /opt/ros/$ROS_DISTRO --cmake-args -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3
 
 # Import src dependencies
 # Check file dependencies.yaml exists
@@ -55,5 +60,7 @@ cd $EKLT_CATKIN_WS/src
 vcs-import < $REPO_DIR/dependencies.yaml
 
 # Build catkin workspace
+set +u
 catkin build eklt
 source $EKLT_CATKIN_WS/devel/setup.bash
+set -u
