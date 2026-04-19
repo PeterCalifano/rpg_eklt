@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "../../home/vscode/eklt_catkin_ws"
+		},
+		{
+			"path": "../v2e"
+		},
+		{
+			"path": "../EventDataGenerationLib"
+		},
+		{
+			"path": "../../../../../../home/peterc/devDir/rendering-sw/spectral_raytracer_dev"
 		}
 	],
 	"settings": {
